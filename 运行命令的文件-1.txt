@@ -1,0 +1,51 @@
+
+
+第一步：先切到代码存放目录
+看你 VS Code 顶部路径：D:\default > Untitled-1.cpp
+代码存在 D 盘 default 文件夹，PowerShell 里输入这条切换目录：
+powershell
+cd D:\default
+第二步：再执行编译运行
+切换完目录后，再输入编译命令：
+powershell
+g++ Untitled-1.cpp -o student.exe
+编译无报错后运行：
+powershell
+.\student.exe
+完整复制一次性执行
+powershell
+cd D:\default
+g++ Untitled-1.cpp -o student.exe
+.\student.exe
+补充说明
+cd D:\default = 切换到代码所在文件夹
+只有当前终端目录和 cpp 文件目录一致，g++ 才能找到文件
+Windows PowerShell 运行 exe 用 .\文件名.exe，不是 ./（Linux/macOS 写法）
+以后打开 VS Code 内置终端，会自动定位到工作目录，不用手动 cd 切换，不会再报找不到文件。
+
+
+
+贰 
+关闭进程
+三种关闭 run.exe 进程的方法，从简单到万能
+方法 1：程序内正常退出（最优，无副作用）
+程序菜单出现后，输入数字 5 按回车：
+plaintext
+请选择操作: 5
+程序执行退出代码，自动销毁进程，文件立刻解除占用。
+方法 2：终端里快捷键强制终止（程序卡住无法输入时用）
+在运行 .\run.exe 的那个 PowerShell 窗口，直接按下：
+Ctrl + C
+瞬间杀掉当前运行的 exe，回到命令提示符 PS D:\default>，文件解锁。
+方法 3：找不到窗口、窗口关掉了但进程后台残留（万能强制杀）
+1. 随便打开一个 PowerShell（新窗口 / 当前窗口都行）
+2. 复制这条命令回车执行
+powershell
+taskkill /f /im run.exe
+
+
+
+配套一键编译脚本（以后不用手动杀进程）
+以后每次编译直接复制整条运行，自动杀旧程序、编译、启动：
+powershell
+taskkill /f /im run.exe; cd D:\default; g++ Untitled-1.cpp -o run.exe; .\run.exe

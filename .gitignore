@@ -1,0 +1,9 @@
+# 编译产物
+*.exe
+*.obj
+*.o
+# VS Code配置文件夹
+.vscode/
+# 日志、临时文件
+*.log
+*.tmp
